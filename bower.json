@@ -1,0 +1,32 @@
+{
+  "name": "layout",
+  "main": "index.js",
+  "version": "0.0.0",
+  "authors": [
+    "eyolas <dtouzet@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "traceur": "~0.0.74",
+    "backbone": "~1.1.2",
+    "jquery": "~2.1.1",
+    "polymer": "~0.4.2",
+    "marionette": "~2.2.2",
+    "di": "angular/di.js",
+    "es6-module-loader": "~0.9.4",
+    "system.js": "~0.9.3",
+    "rivets": "~0.7.1",
+    "sightglass": "~0.2.3",
+    "backbone.marionette.rivets": "eyolas/backbone.marionette.rivets"
+  },
+  "resolutions": {
+    "traceur": "~0.0.74"
+  }
+}
