@@ -75,7 +75,7 @@
     traceur.options.experimental = true;
     System.map['di'] = 'bower_components/di/src/index';
     System.map['template'] = 'js/compiled';
-    System.import('scripts/main').catch(function(e) {
+    System.import('scripts/bootstrap').catch(function(e) {
         console.error(e);
     });
     </script>

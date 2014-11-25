@@ -1,4 +1,4 @@
-import {LayoutView} from './marionette';
+import {LayoutView} from '../marionette';
 
 export class Layout extends LayoutView {
   constructor() {
