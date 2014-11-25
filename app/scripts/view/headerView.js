@@ -10,7 +10,7 @@ export class HeaderView extends ItemView {
     constructor(layout) {
         console.log("construct layout");
         this.layout = layout;
-        this.template = '#header-template';
+        this.template = 'header-template';
 
         this.events = {
             'click .home': 'home',

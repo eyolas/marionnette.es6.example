@@ -1,19 +1,26 @@
 import {Inject, InjectLazy} from 'di';
+import {Application as MarionetteApplication} from './Marionette'
 import {Layout} from './view/layout';
 import {HeaderView} from './view/headerView';
 import {HomeView} from './view/homeView';
 
 
-export class Application {
+export class Application extends MarionetteApplication{
   constructor(
     @Inject(Layout) layout,
     @InjectLazy(HeaderView) headerView
   ) {
     
-    // Render and append the layout
-    $('body').append(layout.render().el);
-    // Show inner view
-    layout.header.show(new headerView());
-    layout.content.show(new HomeView());
+    this.setupRegion();
+
+    this.body.show(layout)
+      .currentView.header.show(new headerView())
+      .currentView.content.show(new HomeView());
+  }
+
+  setupRegion() {
+    this.addRegions({
+      body: "body"
+    });
   }
 }

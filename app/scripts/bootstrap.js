@@ -4,5 +4,6 @@ import {Application} from './application';
 $(function() {
 	console.log(Application);
   var injector = new Injector([]);
-  injector.get(Application);
+  var application = injector.get(Application);
+  application.start();
 });
