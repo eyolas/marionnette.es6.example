@@ -1,26 +1,43 @@
-import {Inject, InjectLazy} from 'di';
-import {Application as MarionetteApplication} from './Marionette'
-import {Layout} from './view/layout';
-import {HeaderView} from './view/headerView';
-import {HomeView} from './view/homeView';
+import {Inject} from 'di';
+import {Application as MarionetteApplication} from './marionette'
+import {Layout} from './layout/layout';
+import {HeaderView} from './layout/headerView';
+import {HomeView} from './pages/homeView';
+import {Router as PageRouter} from './pages/router';
 
-
-export class Application extends MarionetteApplication{
+export class Application extends MarionetteApplication {
   constructor(
-    @Inject(Layout) layout,
-    @InjectLazy(HeaderView) headerView
+    @Inject(Layout) layout
   ) {
-    
+    super();
     this.setupRegion();
+    this.layout = layout;
 
-    this.body.show(layout)
-      .currentView.header.show(new headerView())
-      .currentView.content.show(new HomeView());
+    this.addInitializer(() => {
+      let currentView = this.bodyRegion.show(layout).currentView;
+      currentView.headerRegion.show(new HeaderView());
+      currentView.contentRegion.show(new HomeView());
+    });
+
+
+    this.commands.setHandler("changeContent", (content) => {
+      this.layout.contentRegion.show(content);
+    });
+
+    this.addInitializer(() => {
+      console.log("ici");
+      new PageRouter(this);
+    });
+
+    this.on("start", () => {
+      console.log("initialize:after");  
+      Backbone.history.start({pushState: true, roor: ""})
+    });
   }
 
   setupRegion() {
     this.addRegions({
-      body: "body"
+      bodyRegion: "body"
     });
   }
 }

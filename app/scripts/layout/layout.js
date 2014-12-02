@@ -5,8 +5,8 @@ export class Layout extends LayoutView {
     this.template = 'layout-template';
     // define regions
     this.regions = {
-      header: '.header',
-      content: '.content'
+      headerRegion: '.header',
+      contentRegion: '.content'
     }
 
     super();

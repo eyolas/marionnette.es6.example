@@ -6,7 +6,9 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         conf: {
-            src: 'app'
+            src: 'app',
+            port: 8000,
+            livereloadPort: 35730
         },
 
         clean: {
@@ -20,7 +22,7 @@ module.exports = function(grunt) {
 
             livereload: {
                 options: {
-                    livereload: 35729
+                    livereload: '<%= conf.livereloadPort %>'
                 },
                 files: [
                     '{.tmp,<%= conf.src %>/}/{,*/}*.{js,css}',
@@ -48,10 +50,10 @@ module.exports = function(grunt) {
         },
         connect: {
             options: {
-                port: 9000,
+                port: '<%= conf.port %>',
                 // Change this to 'localhost' to deny access to the server from outside.
                 hostname: 'localhost',
-                livereload: 35729
+                livereload: '<%= conf.livereloadPort %>'
             },
             livereload: {
                 options: {
